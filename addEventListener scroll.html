@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>addEventListener scroll</title>
+</head>
+<body>
+    <script>
+        let flag = true
+
+        const changeHeight = () => {
+            up.style.height = size + "px";
+            (flag) ? (size+=10) : (size-=10);
+            if (size >= window.innerHeight / 2 ) 
+            {
+                flag = !flag;
+                up.style.backgroundColor = "green";
+            } else if (size <= 0)
+            {
+                flag = !flag;
+                up.style.backgroundColor = "red";
+            }
+            
+        }
+        size = 100
+        document.body.style.height = "10000vh";
+        const up = document.createElement("div");
+        document.body.appendChild(up);
+        up.style.backgroundColor = "black";
+        up.style.position = "fixed";
+        document.body.style.margin = "0";
+        window.addEventListener("scroll", changeHeight );
+        up.style.width = "100%"
+       
+        size < window.innerHeight / 2 
+
+
+
+
+    </script>
+</body>
+</html>

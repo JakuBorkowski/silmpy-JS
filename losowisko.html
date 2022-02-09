@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{margin: 0;
+         padding: 0;
+         }
+        .bigButton{
+            position:absolute;
+            left: 50%;
+            top: 10vh;
+            font-size: 40px;
+            margin-bottom: 5vh;
+            height: 60px;
+            width: 120px;
+            transform: translate(-50%, -50%);
+
+        }
+        div{
+            position: absolute;
+            height: 60%;
+            width: 46vw;
+            margin: 5vh, 0;
+            top:20vh;
+            padding: 3vh;
+            background-color: #DCDCDC;
+            color: #696969;
+        }
+        #left{
+            left:0;
+                    }
+        #right{
+            left: 50vw;
+                    }
+
+
+    </style>
+
+</head>
+<body>
+    <button class="bigButton">losuj</button>
+    <div id="right">
+        <button class="add">dodaj</button>
+        <button class="back">cofnij</button>
+        <button class="reset">reset</button>  
+        <label for="inpt"> <input class= "inpt" type="text"> </label>
+        <p class="items"></p>
+    
+    </div>
+    <div id="left">
+        <p class="debuger"> </p>
+        <p class="result"> </p>
+    </div>
+    <script>
+        const draw = document.body.querySelector(".bigButton")
+        const result = document.body.querySelector(".result")
+        const left = document.body.querySelector(".debuger")
+        const right = document.body.querySelector("#right")
+            const add = right.querySelector(".add")
+            const back = right.querySelector(".back")    
+            const reset = right.querySelector(".reset")
+            const inpt = right.querySelector(".inpt")
+            const items = right.querySelector(".items") 
+        let itemContext = [];
+        
+
+        const addInput = () => {
+            if (itemContext.length >= 100){
+                left.textContent = "możesz podać maksymalnie 100 elemenmtów"
+            }
+            else
+            {itemContext.push(` ${inpt.value}`);
+            items.textContent = itemContext;
+            inpt.value = "";}
+        }
+        const delLast = () => {
+            itemContext.pop();
+            items.textContent = itemContext;
+        }
+        const resetAll = () => {
+            itemContext = [];
+            items.textContent = itemContext;
+
+        }
+        const keyUp = (e) => {
+            if (e.keyCode == 13) addInput()
+                       
+        }
+        const drawResult = () => {
+            if (itemContext.length <= 1)
+                {
+                    left.textContent = "musisz podać przynajmniej dwa argumenty by losować  "
+                }
+            else {
+                    result.textContent= itemContext[(Math.floor(Math.random() * itemContext.length))]
+                }
+            
+        }
+        
+        add.addEventListener("click" , addInput);
+        back.addEventListener("click" , delLast);
+        reset.addEventListener("click" , resetAll);
+        draw.addEventListener("click" , drawResult)
+        inpt.addEventListener("keyup", keyUp)
+    </script>
+</body>
+</html>

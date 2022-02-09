@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kordyaty zmiana koloru</title>
+    <style>
+        body {height: 100vh;}
+        h1{
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50% , -50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>rusz myszką</h1>
+    <script>
+        let h1Tekst = document.body.querySelector("h1"); // pobieram h1 żeby zmienić jej treśc w funkcji 
+        let bColor = document.body; // pobieram body żeby zmienić jego kolor w funkcji 
+        let wHeight = window.innerHeight; // maksymalna wysokość i szerokość jest potrzebna przy okresleniu proporcji w funkcji 
+        let wWidth = window.innerWidth;
+        
+        const mMove = (e) => { 
+            h1Tekst.textContent = `${e.clientX} , ${e.clientY}`; // h1 pokazuje położenie kursora ( oś x i y )
+            let redC = 100 * e.clientX / wWidth;                 // obliczenie z proporcji jaki % maksymalnej wielkosci osi x i y przyjmuje dana pozycja 
+            let greenC = 100 * e.clientY / wHeight;
+            let blueC = (100 * e.clientX / wWidth + 100 * e.clientY / wHeight) / 2;// w wypadku trzeciej wartości użyłem oby wartości (max 200%) które podzieliłem na dwa
+            bColor.style.backgroundColor = ` rgb(${redC}%, ${greenC}%, ${blueC}%) `;//przypisanie zmiennych do stylów 
+        }
+        document.body.addEventListener("mousemove" , mMove ) //wywołanie funkcji 
+    </script>
+</body>
+</html>

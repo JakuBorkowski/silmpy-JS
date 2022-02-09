@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <title>writer</title>
+ <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&amp;subset=latin-ext" rel="stylesheet">
+
+
+ <style>
+  div {
+   font-family: roboto;
+   max-width: 80%;
+   margin: 20px auto;
+   font-size: 60px;
+   letter-spacing: 1px;
+  }
+
+  .cursor {
+   opacity: 0;
+   transition: .2s;
+  }
+
+
+  .cursor.active {
+   opacity: 1;
+  }
+ </style>
+</head>
+
+<body>
+ <div>
+  <span class="text"></span><span class="cursor">|</span>
+ </div>
+
+ <script>
+     const spnText = document.querySelector('.text');
+const spnCursor = document.querySelector('.cursor');
+const txt = ['to pierwszy tekst w tablicy', 'ten tekst jest drugi, zaraz będzie trzeci', 'teksty będą pojawiać się tak długo jak długa jest tablica', 'i zatrzymają się na ostatnim jej elemencie..','...czyli tym, miłego dnia :)']
+
+const indexs = {
+    indexArry: 0,
+    indexText: 0,
+    nextOne: true,
+}
+
+const addLetter = () => {
+    if (!indexs.nextOne) {
+     spnText.textContent = "";
+     indexs.nextOne = !indexs.nextOne
+     setTimeout(addLetter, 1000)
+}
+   else if (indexs.indexText === txt[indexs.indexArry].length) 
+    {
+     indexs.indexText = 0;
+     indexs.indexArry++;
+     if (indexs.indexArry === txt.length) ;
+     else {
+        indexs.nextOne = !indexs.nextOne;
+        setTimeout(addLetter, 2000)
+    }
+}
+ else {
+     spnText.textContent += txt[indexs.indexArry][indexs.indexText]; 
+     indexs.indexText++;
+     setTimeout(addLetter, 100)
+    }
+}
+
+addLetter()
+
+const cursorAnimation = () => {
+ spnCursor.classList.toggle('active');
+}
+setInterval(cursorAnimation, 400)
+
+ </script>
+</body>
+
+</html>

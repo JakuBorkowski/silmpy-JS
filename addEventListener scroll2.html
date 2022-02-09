@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>addEventListener scroll</title>
+    <style>
+        div{ 
+            position: fixed;
+            top:50%;
+            left:50%;
+            transform: translate(-50%, -50%);
+                    
+            }
+        body {height: 50000vh;}
+        
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        let num = 50 //wielkość boku kwadratu 
+        let grow = 1 //psuedo boolien który określa czy ma rosnąć czy spadać 
+        const numberPx = () => {return num + "px"} //funkcja dodająca px do numeru (potrzebne przy dodawaniu stylów CSS)
+        const numUpAndDown = () => {               //funkcja zmieniająca wielkość kwadratu
+            squer.style.height = numberPx();
+            squer.style.width = numberPx();
+            if (num >= window.innerHeight / 2) {grow++} //przy pomocy psełdo boolien (zmienna grow) określa czy num(bok kwadratu) rosnąć czy maleć
+            else if (num <= 0) {grow--}
+            ( grow === 1 ) ? (num += 10) : (num -= 10)          //rośnij albo malej (zależy od instrukcji powyżej)
+        }
+        const squer = document.createElement("div"); // robi czarny kwadrat 
+        document.body.appendChild(squer);
+        squer.style.backgroundColor = "black";
+        window.addEventListener("scroll" , numUpAndDown ) // wywołanie funkcji zmnieszajacej i zwiększajacej boki kwadratu przy pomocy scrolla 
+    </script>
+</body>
+</html>

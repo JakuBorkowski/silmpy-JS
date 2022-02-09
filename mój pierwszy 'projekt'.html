@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mój pierwszy JS</title>
+    <style>
+        div{
+            background-color: black;
+            position: fixed;
+            height: 200px;
+            width: 200px;
+            
+        }
+        body{height: 99,9vh;}
+    </style>
+</head>
+<body>
+    <div></div>
+
+    <script>
+
+        const blackBox = document.body.querySelector("div");
+        let move = false; // funkcje będe zmieniały flagę, zależy od niej czy kwadrat się porusza czy nie
+        let divValueX = 100 // bazowe kordynaty kwadratu, będą je zmieniały funkcje 
+        let divValueY = 100
+        let divInX;        // zmienne będą odejmowane od kordynatów myszy (gdy jest na kwadracie) i korygować położenie kwadratu tak aby utrzymywał się w miejscu w którym klikiśmy, przypisanie wartości nastąpi w funkcji
+        let divInY;
+       
+
+        const boxMoveStart = (e) => { // zaczynamy ruch kwadratu kliknieciem na niego
+            blackBox.style.backgroundColor = "grey";
+            divInX = e.offsetX;         // sprawdzamy jakie położenie wewnątrz diva ma kursor, przypisujemy do zmiennych z zakresu globalnego
+            divInY = e.offsetY;
+            console.log (move = true) // zmiana flagi aby móc ruszać kwadratem gdy klawisz wcisniety
+    
+
+        }
+        const boxMove = (e) => { //jeśli klawisz klika na kwadrat możemy go przemieszczać)
+            if (move === true){
+            divValueX = e.clientX //przypisanie kordynatów myszy do kwadratu
+            divValueY = e.clientY
+            blackBox.style.left = divValueX - divInX + "px"; // przesuniecie kwadratu tak aby możliwe było jego trzymanie
+            blackBox.style.top = divValueY - divInY + "px";
+            }
+
+        }
+
+        const boxMoveStop = () => { //koniec trzymania kwadratu
+            console.log (move = false); 
+            blackBox.style.backgroundColor = "black";
+           
+
+        }
+
+
+        blackBox.addEventListener("mousedown", boxMoveStart);
+        blackBox.addEventListener("mousemove", boxMove );
+        blackBox.addEventListener("mouseup" , boxMoveStop);
+    </script>
+</body>
+</html>

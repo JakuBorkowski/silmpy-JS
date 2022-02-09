@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dodaj dwa, podzielne przez trzy większe</title>
+    <style>
+        button{
+
+             }
+        .bigone {
+            font-size: 20px;
+        }
+
+        </style>
+</head>
+<body>
+    <button>
+        klinij mnie
+    </button>
+
+    <script>
+        let num = 1
+        const button = document.querySelector("button");
+        const addNumber = () => {
+        const newLINumber = document.createElement("li")
+        newLINumber.textContent = num
+        document.body.appendChild(newLINumber)
+        if (num % 3 === 0) {newLINumber.classList.add("bigone")}
+        num += 2
+        }
+        button.addEventListener("click" , addNumber);
+    </script>
+</body>
+</html>
